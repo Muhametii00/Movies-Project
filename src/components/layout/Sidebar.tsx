@@ -6,8 +6,11 @@ import {
   ListItemText,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext/AuthContext";
 
 export const Sidebar = () => {
+  const authCtx = useAuthContext();
+
   return (
     <Box
       component="aside"
@@ -45,7 +48,7 @@ export const Sidebar = () => {
           </ListItem>
 
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => authCtx.logout()}>
               <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>

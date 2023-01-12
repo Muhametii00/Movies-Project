@@ -8,9 +8,9 @@ export const Main: React.FC<{ children: React.ReactNode }> = (props) => {
       sx={{
         width: "100%",
         height: "100%",
+        padding: "20px",
         display: "flex",
         minHeight: "100vh",
-        padding: "20px",
       }}
     >
       {props.children}

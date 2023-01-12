@@ -1,20 +1,19 @@
 import { Box } from "@mui/material";
-import { Main } from "./components/layout/Main";
-import { Sidebar } from "./components/layout/Sidebar";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Theme } from "./components/layout/Theme";
 
 import { Routes } from "./routes/Routes";
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <Theme>
-      <Box sx={{ display: "flex" }}>
-        <Sidebar />
-
-        <Main>
+      <QueryClientProvider client={queryClient}>
+        <Box sx={{ display: "flex" }}>
           <Routes />
-        </Main>
-      </Box>
+        </Box>
+      </QueryClientProvider>
     </Theme>
   );
 }

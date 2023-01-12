@@ -1,15 +1,9 @@
-import { Button, TextField } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useLoginFormik } from "../components/Login/LoginForm/useLoginFormik";
+
+import { LoginForm } from "../components/Login/LoginForm/LoginForm";
 
 export const Login = () => {
-  const formik = useLoginFormik({
-    onSubmit(values, formikHelpers) {
-      console.log(values);
-    },
-  });
-
   return (
     <Box
       sx={{
@@ -25,49 +19,13 @@ export const Login = () => {
           borderColor: "secondary.main",
           borderRadius: 1,
           padding: "10px",
-          minWidth: 360,
+          minWidth: "360px",
         }}
       >
         <h1>Login</h1>
 
-        <Box
-          component="form"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: 4,
-          }}
-          noValidate
-          autoComplete="off"
-          onSubmit={formik.handleSubmit}
-        >
-          <TextField
-            id="username"
-            name="username"
-            label="Username"
-            variant="outlined"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            sx={{ marginBottom: 2 }}
-            error={formik.touched.username && !formik.errors.username}
-            helperText={formik.errors.username}
-          />
-          <TextField
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
-            variant="outlined"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && !formik.errors.password}
-            helperText={formik.errors.password}
-            sx={{ marginBottom: 2 }}
-          />
-          <Button type="submit" variant="contained">
-            Login
-          </Button>
-        </Box>
+        <LoginForm />
+
         <Box
           sx={{
             marginTop: 2,
@@ -75,7 +33,7 @@ export const Login = () => {
             justifyContent: "space-between",
           }}
         >
-          <NavLink to="/forgot-password">Forgot your password</NavLink>
+          <NavLink to="/forgot-password">Forgot your password?</NavLink>
           <NavLink to="/sign-up">Create an account</NavLink>
         </Box>
       </Box>

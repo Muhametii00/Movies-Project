@@ -11,20 +11,20 @@ interface LoginFields {
   password: string;
 }
 
-interface UseLoginFormOptions {
+interface FormikProps {
   onSubmit: (
     values: LoginFields,
     formikHelpers: FormikHelpers<LoginFields>
   ) => void;
 }
 
-export const useLoginFormik = ({ onSubmit }: UseLoginFormOptions) => {
+export const useLoginFormik = ({ onSubmit }: FormikProps) => {
   return useFormik({
     initialValues: {
       username: "",
       password: "",
     },
-    validateOnBlur: false,
+    validateOnBlur: true,
     validateOnChange: true,
     validationSchema: LoginSchema,
     onSubmit,

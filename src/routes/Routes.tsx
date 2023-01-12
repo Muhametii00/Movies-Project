@@ -1,10 +1,30 @@
 import { RouteObject, useRoutes } from "react-router-dom";
+import { AuthenticationLayout } from "../components/layout/AuthenticationLayout";
+import { DashboardLayout } from "../components/layout/DashboardLayout";
 
-import { Home, Login } from "../pages";
+import { Error404, Home, Login, Register } from "../pages";
+import { Products } from "../pages/Products";
+import { Users } from "../pages/Users";
 
 export const dashboardRoutes: RouteObject[] = [
-  { path: "login", element: <Login /> },
-  { path: "/", element: <Home /> },
+  {
+    element: <AuthenticationLayout />,
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "sign-up", element: <Register /> },
+    ],
+  },
+
+  {
+    element: <DashboardLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "products", element: <Products /> },
+      { path: "users", element: <Users /> },
+    ],
+  },
+
+  { path: "*", element: <Error404 /> },
 ];
 
 export const Routes = () => {
