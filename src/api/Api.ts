@@ -6,6 +6,6 @@ export async function apiRequest<D = {}, R = unknown>({
 }: AxiosRequestConfig<D>) {
   return await Axios.request<D, AxiosResponse<R>>({
     ...options,
-    url: `${import.meta.env.VITE.API.URL}/${url}`,
+    url: `${import.meta.env.VITE_API_URL}/${url}`,
   });
 }

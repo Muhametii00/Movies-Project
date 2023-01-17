@@ -3,6 +3,7 @@ import { useLoginFormik } from "./useLoginFormik";
 
 import { useAuthContext } from "../../../contexts/AuthContext/AuthContext";
 import { login } from "../../../api/auth/auth";
+import { toast } from "react-toastify";
 
 export const LoginForm = () => {
   const authCtx = useAuthContext();
@@ -10,11 +11,14 @@ export const LoginForm = () => {
   const formik = useLoginFormik({
     async onSubmit(values, formikHelpers) {
       try {
-        const response = await login(values.username, values.password);
+        await login(values.username, values.password);
 
-        const json = await response.json();
-      } catch (error) {}
-      authCtx.login();
+        toast.success("You've been logged in!");
+
+        authCtx.login();
+      } catch (error) {
+        toast.error("Invalid Credentials!");
+      }
     },
   });
 

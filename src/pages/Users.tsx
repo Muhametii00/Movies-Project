@@ -5,7 +5,7 @@ import { UsersTable } from "../components/Users/UsersTable";
 import { MutatingDots } from "react-loader-spinner";
 
 export const Users = () => {
-  const { data, isLoading, error } = useQuery("users", getAllUsers);
+  const { data, isLoading, isError } = useQuery("users", getAllUsers);
   return (
     <>
       {isLoading && (
@@ -27,7 +27,7 @@ export const Users = () => {
         />
       )}
       <>
-        {error && (
+        {isError && (
           <ErrorMessage message="This page is not avaliable for the moment, please try again later!" />
         )}
       </>

@@ -6,15 +6,22 @@ interface Props {
   data: User[];
 }
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "firstName", headerName: "First name", width: 130 },
-  { field: "lastName", headerName: "Last name", width: 130 },
+  { field: "id", headerName: "ID", width: 100 },
+  { field: "firstName", headerName: "First name", width: 160 },
+  { field: "lastName", headerName: "Last name", width: 160 },
+  {
+    field: "email",
+    headerName: "Email",
+    align: "left",
+    headerAlign: "left",
+    width: 200,
+  },
   {
     field: "age",
     headerName: "Age",
     align: "left",
     headerAlign: "left",
-    width: 90,
+    width: 130,
   },
   { field: "gender", headerName: "Gender", width: 90 },
 ];
@@ -27,11 +34,12 @@ export const UsersTable = ({ data }: Props) => {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
+      email: user.email,
       age: user.age,
       gender: user.gender,
     };
   });
-  const handleDoubleClick = (id: number) => {
+  const handleRowDoubleClick = (id: number) => {
     navigate(`/users/${id}`);
   };
   return (
@@ -42,7 +50,7 @@ export const UsersTable = ({ data }: Props) => {
         pageSize={10}
         rowsPerPageOptions={[10]}
         checkboxSelection
-        onRowDoubleClick={(user: any) => handleDoubleClick(user.id)}
+        onRowDoubleClick={(user: any) => handleRowDoubleClick(user.id)}
       />
     </div>
   );
